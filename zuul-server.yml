@@ -1,0 +1,40 @@
+server:
+  port: ${PORT:8080}
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+security:
+  basic:
+    enabled: false
+
+zuul:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  routes:
+    venda:
+      path: /venda/**
+      serviceId: VENDA-SERVER
+    pessoa:
+      path: /pessoa/**
+      serviceId: PESSOA-SERVER  
+  add-proxy-headers: true
+
+---
+spring:
+  profiles: docker
+
+zuul:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  routes:
+    venda:
+      path: /venda/**
+      url: http://venda:8084
+    pessoa:
+      path: /pessoa/**
+      url: http://pessoa:8083  
+  add-proxy-headers: true
