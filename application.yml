@@ -58,10 +58,6 @@ hystrix:
           semaphore:
             maxConcurrentRequests: 2000  
 
-spring:
-  messages:
-    basename: messages/messages
-    
 ---
 spring:
   profiles: localhost   
