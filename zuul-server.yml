@@ -1,20 +1,7 @@
 server:
   port: ${PORT:8080}
 
-endpoints:
-  restart:
-    enabled: true
-  shutdown:
-    enabled: true
-  health:
-    sensitive: false
-
-security:
-  basic:
-    enabled: false
-
 zuul:
-  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
   routes:
     venda:
       path: /venda/**
@@ -22,7 +9,10 @@ zuul:
     pessoa:
       path: /pessoa/**
       serviceId: PESSOA-SERVER  
-  add-proxy-headers: true
+
+
+
+
 
 ---
 spring:
